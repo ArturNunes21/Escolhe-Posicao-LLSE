@@ -116,11 +116,7 @@ void MainWindow::on_btn_acessar_posicao_clicked()
     try{
         int posicao=ui->lineEdit_acessar_posicao->text().toInt();
         QString saida = "";
-        int elementos=lista.getQuantidadeElementos();
-        if(posicao>elementos){
-            throw QString ("Valor inválido.");
-        }
-        if(posicao==1){
+        if(posicao==0){
             saida += "| " + QString::number(lista.acessarInicio())+ " |";
             ui->lineEditValor->setText(saida);
         }
@@ -135,19 +131,6 @@ void MainWindow::on_btn_acessar_posicao_clicked()
 }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 void MainWindow::on_btn_inserir_posicao_clicked()
 {
     {
@@ -157,7 +140,7 @@ void MainWindow::on_btn_inserir_posicao_clicked()
             int elementos=lista.getQuantidadeElementos();
             dado=ui->lineEditValor->text().toInt();
             posicao=ui->lineEdit_inserir_posicao->text().toInt();
-            if(posicao==1){
+            if(posicao==0){
                 lista.inserirInicio(dado);
             }
             else if(posicao==elementos){
@@ -186,18 +169,8 @@ void MainWindow::on_btn_retirar_posicao_clicked()
     try{
         QString saida = "";
         int valor;
-        int elementos=lista.getQuantidadeElementos();
-        int posicao=ui->btn_retirar_posicao->text().toInt();
-        if(posicao==1){
-            valor = lista.retirarInicio();
-        }
-        else if(posicao==elementos){
-            valor = lista.retirarFim();
-        }
-        else{
-            valor = lista.retirarPosicao(posicao);
-        }
-        //lista.printLLSE();  // DEBUG
+        int posicao=ui->lineEdit_retirar_posicao->text().toInt();
+        valor=lista.retirarPosicao(posicao);
         saida += "Valor | "+ QString::number(valor)+ " | retirado. \n";
         ui->textEditSaida->setText(saida + lista.obterDadosLLSE());
         QString num = QString::number(lista.getQuantidadeElementos());

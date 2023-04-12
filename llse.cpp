@@ -117,8 +117,11 @@ int LLSE::acessarPosicao(int posicao){
     if(estaVazia()){
         throw QString ("A lista está vazia - acessarInicio");
     }
+    if(posicao >=quantidadeElementos || posicao <0){
+        throw QString ("Valor inválido - acessarPosicao");
+    }
     No *aux=inicio;
-    for(int i=0; i<posicao-1;i++){
+    for(int i=0; i<posicao;i++){
         aux=aux->getProximo();
     }
     return aux->getDado();
@@ -127,6 +130,9 @@ int LLSE::acessarPosicao(int posicao){
 
 void LLSE::inserirPosicao(int valor,int posicao){
     try{
+        if(posicao<0 || posicao > quantidadeElementos){
+            throw QString ("Valor inválido - retirarPosicao");
+        }
         No *novoNo=new No(valor);
         if (estaVazia()) { // se lista vazia
           inicio = novoNo;
@@ -135,7 +141,7 @@ void LLSE::inserirPosicao(int valor,int posicao){
         }
         No *noAnterior=inicio;
         No *proximoNo=inicio;
-        for(int i=1; i<posicao;i++){
+        for(int i=0; i<posicao;i++){
             if(i==posicao-1){
                 noAnterior=proximoNo;
             }
@@ -170,21 +176,26 @@ QString LLSE::obterDadosLLSE()const{
 
 int LLSE::retirarPosicao(int posicao){
     try{
-        No *atual=inicio;
-        No *noAnterior=inicio;
-        No *proximoNo=inicio;
-        int valor;
-        for(int i=1; i<posicao;i++){
-            if(i==posicao-1){
-                noAnterior=proximoNo;
-            }
-            if(i==posicao){
-                atual=proximoNo;
-            }
-            proximoNo=proximoNo->getProximo();
+        if(estaVazia()){
+            throw QString ("Lista vazia - retirarPosicao");
         }
-        noAnterior->setProximo(proximoNo);
-        valor=atual->getDado();
+        if(posicao<0 || posicao >=quantidadeElementos){
+            throw QString ("Valor inválido - retirarPosicao");
+        }
+        if(posicao==0){
+            return retirarInicio();
+        }
+        if(posicao==quantidadeElementos-1){
+            return retirarFim();
+        }
+        No *anterior=inicio;
+        No *atual=inicio;
+        for(int i=0; i<posicao-1;i++){
+            anterior=anterior->getProximo();
+        }
+        atual=anterior->getProximo();
+        anterior->setProximo(atual->getProximo());
+        int valor = atual->getDado();
         delete atual;
         quantidadeElementos--;
         return valor;
