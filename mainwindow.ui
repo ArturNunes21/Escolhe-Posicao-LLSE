@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>608</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,7 +46,7 @@
       <x>70</x>
       <y>300</y>
       <width>679</width>
-      <height>249</height>
+      <height>81</height>
      </rect>
     </property>
     <property name="readOnly">
@@ -71,12 +71,12 @@
      <rect>
       <x>350</x>
       <y>240</y>
-      <width>219</width>
+      <width>191</width>
       <height>25</height>
      </rect>
     </property>
     <property name="inputMask">
-     <string>999999</string>
+     <string>99999</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
@@ -140,8 +140,8 @@
      <rect>
       <x>290</x>
       <y>79</y>
-      <width>160</width>
-      <height>121</height>
+      <width>183</width>
+      <height>139</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -193,8 +193,8 @@
      <rect>
       <x>90</x>
       <y>80</y>
-      <width>153</width>
-      <height>121</height>
+      <width>183</width>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -252,8 +252,8 @@ hr { height: 1px; border-width: 0; }
      <rect>
       <x>490</x>
       <y>79</y>
-      <width>160</width>
-      <height>121</height>
+      <width>183</width>
+      <height>139</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -300,6 +300,144 @@ hr { height: 1px; border-width: 0; }
      </item>
     </layout>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>390</y>
+      <width>151</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QPushButton" name="btn_maior_menor">
+       <property name="toolTip">
+        <string>Mostra o menor valor da lista a esquerda, e o maior valor da lista a direita.</string>
+       </property>
+       <property name="text">
+        <string>Maior e menor</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_maior_menor">
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_5">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>390</y>
+      <width>161</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_7">
+     <item>
+      <widget class="QPushButton" name="btn_primeiro_valor">
+       <property name="toolTip">
+        <string>Mostra o primeiro valor inserido na lista</string>
+       </property>
+       <property name="text">
+        <string>Primeiro valor inserido</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_primeiro_valor">
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_6">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>390</y>
+      <width>160</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_8">
+     <item>
+      <widget class="QPushButton" name="btn_mmc">
+       <property name="toolTip">
+        <string>Calcula o MMC entre todos os valores da lista</string>
+       </property>
+       <property name="text">
+        <string>MMC</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_mmc">
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_7">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>470</y>
+      <width>211</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_9">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QPushButton" name="btn_procurar_posicao">
+         <property name="text">
+          <string>Procurar posições</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_procurar_posicao"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textEdit_procurar_posicao">
+       <property name="verticalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -307,7 +445,7 @@ hr { height: 1px; border-width: 0; }
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>20</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

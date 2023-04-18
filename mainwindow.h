@@ -39,6 +39,14 @@ private slots:
 
     void on_btn_retirar_posicao_clicked();
 
+    void on_btn_maior_menor_clicked();
+
+    void on_btn_primeiro_valor_clicked();
+
+    void on_btn_mmc_clicked();
+
+    void on_btn_procurar_posicao_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
