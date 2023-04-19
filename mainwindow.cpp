@@ -20,20 +20,12 @@ Artur::LLSE lista;
 void MainWindow::on_btn_inserir_clicked()
 {
     try{
-        int aux=lista.getAux();
-        QString texto=ui->lineEditValor->text();
-        if(texto==nullptr || texto.length()<1)
-            throw QString ("Nenhum valor inserido - on_btn_inserir_clicked");
-        int dado=texto.toInt();
+        int dado=0;
+        dado=ui->lineEditValor->text().toInt();
         lista.inserirInicio(dado);
         ui->textEditSaida->setText((lista.obterDadosLLSE()));
         QString num = QString::number(lista.getQuantidadeElementos());
         ui->textEditQuantidade->setText(num);
-
-        if(aux==0){
-            lista.setPrimeiro(dado);
-            lista.setAux(1);
-        }
     }
     catch (QString &erro){
         QMessageBox::critical(this,"",erro);
@@ -75,20 +67,12 @@ void MainWindow::on_btn_acessar_clicked(){
 void MainWindow::on_btn_inserir_fim_clicked()
 {
     try{
-        int aux=lista.getAux();
-        QString texto=ui->lineEditValor->text();
-        if(texto==nullptr || texto.length()<1)
-            throw QString ("Nenhum valor inserido - on_btn_inserir_fim_clicked");
-        int dado=texto.toInt();
+        int dado=0;
+        dado=ui->lineEditValor->text().toInt();
         lista.inserirFim(dado);
         ui->textEditSaida->setText((lista.obterDadosLLSE()));
         QString num = QString::number(lista.getQuantidadeElementos());
         ui->textEditQuantidade->setText(num);
-
-        if(aux==0){
-            lista.setPrimeiro(dado);
-            lista.setAux(1);
-        }
     }
     catch (QString &erro){
         QMessageBox::critical(this,"",erro);
@@ -151,11 +135,7 @@ void MainWindow::on_btn_inserir_posicao_clicked()
 {
     {
         try{
-            int aux=lista.getAux();
-            QString texto=ui->lineEditValor->text();
-            if(texto==nullptr || texto.length()<1)
-                throw QString ("Nenhum valor inserido - on_btn_inserir_posicao_clicked");
-            int dado=texto.toInt();
+            int dado=0;
             int posicao=0;
             int elementos=lista.getQuantidadeElementos();
             dado=ui->lineEditValor->text().toInt();
@@ -170,15 +150,9 @@ void MainWindow::on_btn_inserir_posicao_clicked()
                 lista.inserirPosicao(dado, posicao);
             }
                 ui->textEditSaida->setText((lista.obterDadosLLSE()));
-
-                if(aux==0){
-                    lista.setPrimeiro(dado);
-                    lista.setAux(1);
-                }
-            QString num = QString::number(lista.getQuantidadeElementos());
-            ui->textEditQuantidade->setText(num);
+                QString num = QString::number(lista.getQuantidadeElementos());
+                ui->textEditQuantidade->setText(num);
             }
-
         catch (QString &erro){
             QMessageBox::critical(this,"",erro);
         }
@@ -208,55 +182,21 @@ void MainWindow::on_btn_retirar_posicao_clicked()
 }
 
 
-void MainWindow::on_btn_maior_menor_clicked()
+
+void MainWindow::on_btn_insere_ordenado_clicked()
 {
     try{
-        int qtde=lista.getQuantidadeElementos();
-        if(qtde==1){
-            QMessageBox::about(this,"","A lista só possui um elemento");
-        }
-        ui->textEdit_maior_menor->setText(lista.obterMaiorEMenor());
+        int dado=ui->lineEditValor->text().toInt();
+        lista.inserirOrdenado(dado);
+        ui->textEditSaida->setText((lista.obterDadosLLSE()));
+        QString num = QString::number(lista.getQuantidadeElementos());
+        ui->textEditQuantidade->setText(num);
     }
     catch (QString &erro){
         QMessageBox::critical(this,"",erro);
     }
-}
 
-
-
-void MainWindow::on_btn_primeiro_valor_clicked()
-{
-    try{
-        ui->textEdit_primeiro_valor->setText(QString::number(lista.getPrimeiro()));
-    }
-    catch (QString &erro){
-        QMessageBox::critical(this,"",erro);
-    }
-}
-
-
-void MainWindow::on_btn_mmc_clicked()
-{
-    try{
-        ui->textEdit_mmc->setText(QString::number(lista.calcularMmcLLSE()));
-    }
-    catch (QString &erro){
-        QMessageBox::critical(this,"",erro);
-    }
-}
-
-
-void MainWindow::on_btn_procurar_posicao_clicked()
-{
-    try{
-        QString texto=ui->lineEdit_procurar_posicao->text();
-        if(texto==nullptr || texto.length()<1)
-            throw QString ("Nenhum valor inserido - on_btn_inserir_posicao_clicked");
-        int dado=texto.toInt();
-        ui->textEdit_procurar_posicao->setText(lista.obterPosicoes(dado));
-    }
-    catch (QString &erro){
-        QMessageBox::critical(this,"",erro);
-    }
+    ui->lineEditValor->clear();
+    ui->lineEditValor->setFocus();
 }
 
