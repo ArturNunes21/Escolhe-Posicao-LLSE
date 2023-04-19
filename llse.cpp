@@ -63,34 +63,9 @@ int LLSE::retirarFim() {
 
 
 
-int LLSE::getAux() const
-{
-    return aux;
-}
-
-int LLSE::getPrimeiro() const
-{
-    if(aux==0){
-        throw QString ("A lista está vazia - getPrimeiro");
-    }
-    return primeiro;
-}
-
-void LLSE::setPrimeiro(int newPrimeiro)
-{
-    primeiro = newPrimeiro;
-}
-
-void LLSE::setAux(int newAux)
-{
-    aux = newAux;
-}
-
 LLSE::LLSE():
     quantidadeElementos(0),
-    inicio(0),
-    aux(0),
-    primeiro(0)
+    inicio(0)
 {
 }
 bool LLSE::estaVazia()const{
@@ -156,7 +131,7 @@ int LLSE::acessarPosicao(int posicao){
 void LLSE::inserirPosicao(int valor,int posicao){
     try{
         if(posicao<0 || posicao > quantidadeElementos){
-            throw QString ("Valor inválido - inserirPosicao");
+            throw QString ("Valor inválido - retirarPosicao");
         }
         No *novoNo=new No(valor);
         if (estaVazia()) { // se lista vazia
@@ -230,70 +205,46 @@ int LLSE::retirarPosicao(int posicao){
     }
 }
 
-QString LLSE::obterMaiorEMenor() {
-    if (estaVazia()) {
-        throw QString("Lista vazia - obterMaiorEMenor");
-    }
-
-    QString res="";
-    if(quantidadeElementos==1){
-        res=QString::number(inicio->getDado());
-        return res;
-    }
-    No* menor = inicio;
-    No* maior = inicio;
-
-    for (No* no = inicio; no != nullptr; no = no->getProximo()) {
-        if (no->getDado() < menor->getDado()) {
-            menor = no;
+void LLSE::inserirOrdenado(int valor){
+    try{
+        No *novoNo=new No(valor);
+        No *anterior=inicio;
+        No *proximo=inicio->getProximo();
+        int i=0;
+        if(estaVazia()){
+            novoNo->setProximo(inicio);
+            inicio=novoNo;
+            quantidadeElementos++;
+            return;
         }
-        if (no->getDado() > maior->getDado()) {
-            maior = no;
-        }
-    }
-    res= QString::number(menor->getDado()) + "-" + QString::number(maior->getDado());
-    return res;
-}
-
-int LLSE::calcularMmc(int a, int b){
-    int maior= (a>b) ? a : b;
-    while(true){
-        if(maior%a==0 && maior%b==0){
-            return maior;
-        }
-        maior++;
-    }
-}
-
-int LLSE::calcularMmcLLSE(){
-    if(estaVazia() || quantidadeElementos==1){
-        throw QString ("Impossível calcular mmc - calcularMmcLLSE");
-    }
-    int res=calcularMmc(inicio->getDado(), inicio->proximo->getDado());
-    No *atual=inicio->proximo->proximo;
-    while(atual!=nullptr){
-        if(atual->getDado()==0){
-            throw QString ("Impossível calcular MMC com valor 0 - calcularMmcLLSE");
-        }
-        res=calcularMmc(res,atual->getDado());
-        atual=atual->proximo;
-    }
-    return res;
-}
-
-QString LLSE::obterPosicoes(int valor){
-    if(estaVazia()){
-        throw QString ("Lista vazia - obterPosicoes");
-    }
-    QString res="";
-    int i=0;
-
-    for(No *no=inicio; no!=nullptr;no=no->getProximo()){
-        if(no->getDado()==valor){
-            res+= QString::number(i++) + " ";
+        while(true){
+            if(novoNo->getDado()<inicio->getDado()){
+                novoNo->setProximo(inicio);
+                inicio=novoNo;
+                quantidadeElementos++;
+                return;
+            }
+            if(novoNo->getDado()<proximo->getDado()){
+                anterior->setProximo(novoNo);
+                novoNo->setProximo(proximo);
+                quantidadeElementos++;
+                return;
+            }
+            proximo=proximo->getProximo();
+            anterior=anterior->getProximo();
+            if(i==quantidadeElementos){
+                anterior->setProximo(novoNo);
+                novoNo->setProximo(nullptr);
+                quantidadeElementos++;
+                return;
+            }
+            i++;
         }
     }
-    return res;
+    catch (std::bad_alloc &erro){
+        throw QString ("Não foi possível inserir nó - inserirOrdenado");
+    }
+
 }
 
 }   //namespace

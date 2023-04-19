@@ -9,8 +9,6 @@ class LLSE
 private:
     int quantidadeElementos;
     No* inicio;
-    int aux;
-    int primeiro;
 
 public:
     LLSE();
@@ -26,16 +24,8 @@ public:
     void inserirFim(int elemento);
     int retirarFim();
     QString obterDadosLLSE()const;
-    QString obterMaiorEMenor();
     void printLLSE(); // Debug
-    int getAux() const;
-    int getPrimeiro() const;
-    QString obterPrimeiro();
-    void setPrimeiro(int newPrimeiro);
-    void setAux(int newAux);
-    int calcularMmc(int, int);
-    int calcularMmcLLSE();
-    QString obterPosicoes(int);
+    void inserirOrdenado(int);
 };
 }
 #endif
