@@ -3,12 +3,12 @@ namespace Artur{
 
 No::No():
     dado(0),
-    proximo(0)
+    proximo(nullptr)
 {
 }
 No::No(int dado):
     dado(dado),
-    proximo(0)
+    proximo(nullptr)
 
 {
 

@@ -192,9 +192,13 @@ void MainWindow::on_btn_insere_ordenado_clicked()
         QString num = QString::number(lista.getQuantidadeElementos());
         ui->textEditQuantidade->setText(num);
     }
-    catch (QString &erro){
+    catch (QString erro){
         QMessageBox::critical(this,"",erro);
     }
+    catch (std::exception &erro){
+        QMessageBox::critical(this,"",erro.what());
+    }
+
 
     ui->lineEditValor->clear();
     ui->lineEditValor->setFocus();

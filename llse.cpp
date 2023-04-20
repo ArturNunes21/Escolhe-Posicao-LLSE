@@ -65,7 +65,7 @@ int LLSE::retirarFim() {
 
 LLSE::LLSE():
     quantidadeElementos(0),
-    inicio(0)
+    inicio(new No(0))
 {
 }
 bool LLSE::estaVazia()const{
@@ -208,43 +208,43 @@ int LLSE::retirarPosicao(int posicao){
 void LLSE::inserirOrdenado(int valor){
     try{
         No *novoNo=new No(valor);
-        No *anterior=inicio;
+        No *atual=inicio;
         No *proximo=inicio->getProximo();
-        int i=0;
         if(estaVazia()){
+            novoNo->setProximo(nullptr);
+            inicio=novoNo;
+            quantidadeElementos++;
+        }
+        else if(valor<inicio->getDado()){
             novoNo->setProximo(inicio);
             inicio=novoNo;
             quantidadeElementos++;
-            return;
         }
-        while(true){
-            if(novoNo->getDado()<inicio->getDado()){
-                novoNo->setProximo(inicio);
-                inicio=novoNo;
-                quantidadeElementos++;
-                return;
+        else{
+            while(atual!=nullptr){
+                if(proximo==nullptr){
+                    atual->setProximo(novoNo);
+                    quantidadeElementos++;
+                    break;
+                }
+                else if(valor<proximo->getDado()){
+                        novoNo->setProximo(proximo);
+                        atual->setProximo(novoNo);
+                        quantidadeElementos++;
+                        break;
+                    }
+                atual=proximo;
+                proximo=proximo->getProximo();
             }
-            if(novoNo->getDado()<proximo->getDado()){
-                anterior->setProximo(novoNo);
-                novoNo->setProximo(proximo);
-                quantidadeElementos++;
-                return;
-            }
-            proximo=proximo->getProximo();
-            anterior=anterior->getProximo();
-            if(i==quantidadeElementos){
-                anterior->setProximo(novoNo);
-                novoNo->setProximo(nullptr);
-                quantidadeElementos++;
-                return;
-            }
-            i++;
         }
+
     }
     catch (std::bad_alloc &erro){
-        throw QString ("Não foi possível inserir nó - inserirOrdenado");
+        throw ("Não foi possível inserir nó - inserirOrdenado");
     }
-
+    catch (std::exception &erro){
+        throw (erro);
+    }
 }
 
 }   //namespace
